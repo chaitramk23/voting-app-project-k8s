@@ -1,0 +1,41 @@
+pipeline {
+  agent any
+  environment {
+    DOCKERHUB = 'your-docker-namespace'
+    KUBECONFIG = credentials('kubeconfig-cred-id')  // configure in Jenkins credentials
+    DOCKERHUB_CREDS = credentials('dockerhub-creds-id')
+  }
+  stages {
+    stage('Checkout') {
+      steps { checkout scm }
+    }
+    stage('Build Images') {
+      steps {
+        sh "docker build -t ${DOCKERHUB}/vote-app:latest ./vote-app"
+        sh "docker build -t ${DOCKERHUB}/result-app:latest ./result-app"
+        sh "docker build -t ${DOCKERHUB}/worker-app:latest ./worker-app"
+      }
+    }
+    stage('Push Images') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds-id', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+          sh "echo $PASS | docker login -u $USER --password-stdin"
+          sh "docker push ${DOCKERHUB}/vote-app:latest"
+          sh "docker push ${DOCKERHUB}/result-app:latest"
+          sh "docker push ${DOCKERHUB}/worker-app:latest"
+        }
+      }
+    }
+    stage('Deploy to K8s') {
+      steps {
+        withCredentials([file(credentialsId: 'kubeconfig-cred-id', variable: 'KUBECONFIG_FILE')]) {
+          sh '''
+            export KUBECONFIG=$KUBECONFIG_FILE
+            kubectl apply -f k8s-base/config
+            kubectl apply -f k8s-base
+          '''
+        }
+      }
+    }
+  }
+}
