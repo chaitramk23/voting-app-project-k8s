@@ -1,0 +1,31 @@
+replicaCount:
+  vote: 2
+  result: 2
+  worker: 1
+
+image:
+  vote:
+    repository: your-docker-namespace/vote-app
+    tag: latest
+  result:
+    repository: your-docker-namespace/result-app
+    tag: latest
+  worker:
+    repository: your-docker-namespace/worker-app
+    tag: latest
+  redis:
+    repository: redis
+    tag: 6-alpine
+  postgres:
+    repository: postgres
+    tag: 15
+
+postgres:
+  storage: 5Gi
+  username: postgres
+  db: votingdb
+  password: postgres
+
+ingress:
+  enabled: true
+  host: voting.example.com
