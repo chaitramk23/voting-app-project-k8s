@@ -29,3 +29,4 @@ postgres:
 ingress:
   enabled: true
   host: voting.example.com
+
