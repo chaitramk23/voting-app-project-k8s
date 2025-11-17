@@ -84,63 +84,63 @@ I can generate a complete **Helm chart** structure as well
 
 voting-app-k8s/
 ├── README.md
-├── namespace.yaml
+├── namespace.yaml/
 ├── k8s-base/                             # plain kubernetes manifests (for direct kubectl apply)
 │   ├── redis/
-│   │   ├── redis-deployment.yaml
-│   │   └── redis-service.yaml
+│   │   ├── redis-deployment.yaml/
+│   │   └── redis-service.yaml/
 │   ├── postgres/
-│   │   ├── postgres-pvc.yaml
-│   │   ├── postgres-deployment.yaml
-│   │   └── postgres-service.yaml
+│   │   ├── postgres-pvc.yaml/
+│   │   ├── postgres-deployment.yaml/
+│   │   └── postgres-service.yaml/
 │   ├── vote/
-│   │   ├── vote-deployment.yaml
-│   │   └── vote-service.yaml
+│   │   ├── vote-deployment.yaml/
+│   │   └── vote-service.yaml/
 │   ├── result/
-│   │   ├── result-deployment.yaml
-│   │   └── result-service.yaml
+│   │   ├── result-deployment.yaml/
+│   │   └── result-service.yaml/
 │   ├── worker/
-│   │   └── worker-deployment.yaml
+│   │   └── worker-deployment.yaml/
 │   ├── config/
-│   │   ├── voting-configmap.yaml
-│   │   └── voting-secret.yaml
+│   │   ├── voting-configmap.yaml/
+│   │   └── voting-secret.yaml/
 │   ├── ingress/
-│   │   └── ingress-nginx.yaml
+│   │   └── ingress-nginx.yaml/
 │   └── hpa/
-│       └── hpa.yaml
+│       └── hpa.yaml/
 │
 ├── helm-chart/                           # full Helm Chart named voting-app
-│   ├── Chart.yaml
-│   ├── values.yaml
+│   ├── Chart.yaml/
+│   ├── values.yaml/
 │   └── templates/
-│       ├── namespace.yaml
-│       ├── configmap.yaml
-│       ├── secret.yaml
-│       ├── redis-deployment.yaml
-│       ├── redis-service.yaml
-│       ├── postgres-pvc.yaml
-│       ├── postgres-deployment.yaml
-│       ├── postgres-service.yaml
-│       ├── vote-deployment.yaml
-│       ├── vote-service.yaml
-│       ├── result-deployment.yaml
-│       ├── result-service.yaml
-│       ├── worker-deployment.yaml
-│       ├── ingress.yaml
-│       └── hpa.yaml
+│       ├── namespace.yaml/
+│       ├── configmap.yaml/
+│       ├── secret.yaml/
+│       ├── redis-deployment.yaml/
+│       ├── redis-service.yaml/
+│       ├── postgres-pvc.yaml/
+│       ├── postgres-deployment.yaml/
+│       ├── postgres-service.yaml/
+│       ├── vote-deployment.yaml/
+│       ├── vote-service.yaml/
+│       ├── result-deployment.yaml/
+│       ├── result-service.yaml/
+│       ├── worker-deployment.yaml/
+│       ├── ingress.yaml/
+│       └── hpa.yaml/
 │
 ├── cicd/
 │   ├── .github/
 │   │   └── workflows/
-│   │       └── ci-cd.yml                # GitHub Actions
+│   │       └── ci-cd.yml/                # GitHub Actions
 │   └── jenkins/
-│       └── Jenkinsfile
+│       └── Jenkinsfile/
 │
 ├── istio/                                # simple Istio resources (optional)
-│   ├── gateway.yaml
-│   └── virtualservice.yaml
+│   ├── gateway.yaml/
+│   └── virtualservice.yaml/
 │
 └── docs/
-    └── production-notes.md
+    └── production-notes.md/
 
 
